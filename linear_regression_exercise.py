@@ -33,17 +33,17 @@ def get_weigth_using_matrix_formulation(x, y):
 
 def plot_train_and_test_data(x_train, y_train, x_test, y_test, w=None):
     plt.figure(figsize=(8,8))
-    plt.scatter(x_train, y_train, color='blue', label='Treino')
-    plt.scatter(x_test, y_test, color='green', label='Teste')
+    plt.scatter(x_train, y_train, color='blue', label='Train')
+    plt.scatter(x_test, y_test, color='green', label='Test')
 
     if (w != None):
         x_line = np.linspace(x_train.min(), x_test.max(), 100)
         y_line = w * x_line
-        plt.plot(x_line, y_line.ravel(), color='red', label='Reta ajustada')
+        plt.plot(x_line, y_line.ravel(), color='red', label='Fitted Line')
 
     plt.xlabel('Education')
     plt.ylabel('Income')
-    plt.title('Educação x Renda')
+    plt.title('Education x Income')
     plt.legend()
     plt.grid(True)
     plt.show()    
@@ -57,11 +57,11 @@ def plot_mse_with_highlight(x, y_real, weights, optimized_weight):
     mses = [get_mse_by_weights(x, y_real, w) for w in weights]
     
     plt.figure(figsize=(10, 10))
-    plt.plot(weights, mses, marker='o', linestyle='-', color='blue', label='Pesos testados')
-    plt.axvline([optimized_weight], color='red', linestyle='-', label=f'Peso otimizado: {optimized_weigth}')
-    plt.xlabel('Peso w')
+    plt.plot(weights, mses, marker='o', linestyle='-', color='blue', label='Evaluated Weights')
+    plt.axvline([optimized_weight], color='red', linestyle='-', label=f'Optimized Weight: {optimized_weigth}')
+    plt.xlabel('Weight')
     plt.ylabel('MSE')
-    plt.title('Comportamento do MSE para diferentes pesos - Dados de Treino')
+    plt.title('MSE Behavior for Different Weights – Training Data')
     plt.legend()
     plt.grid(True)
     plt.show()
