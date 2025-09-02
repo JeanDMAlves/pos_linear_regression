@@ -1,5 +1,5 @@
-import numpy as np
 #%%
+import numpy as np
 import matplotlib.pyplot as plt
 
 income_data = np.loadtxt(
@@ -85,4 +85,21 @@ plot_mse_with_highlight(
     optimized_weight=optimized_weigth
 )
 
+mse_by_weight = [
+    get_mse_by_weights(x=x_train, y_real=y_train, weigth=w)
+    for w in weigths
+]
+
+mse_test_result = get_mse_by_weights(x=x_test, y_real=y_test, weigth=optimized_weigth)
+
 # %%
+print(f'Weight X MSE - Dados de Treino: ')
+for i in range(len(mse_by_weight)):
+    print(f'Weight: {weigths[i]} -- MSE: {mse_by_weight[i]}')
+
+print('-' * 60)
+print(f'Resultados para o peso otimizado nos dados de teste:')
+print(f'Peso: {optimized_weigth}')
+print(f'MSE: {mse_test_result}')
+
+#%%
